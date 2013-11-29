@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>slice-arguments</title>
+    <link rel="stylesheet" href="../build/build.css">
+  </head>
+  <body>
+    <script src="../build/build.js"></script>
+    <script>
+
+    var slice = require('slice-arguments');
+
+    function assert(expr){ if (!expr) throw new Error('failed') }
+
+    function foo(a, b, fn){
+      var args = slice(arguments);
+      assert(args.callback);
+      assert(args.values);
+      assert(fn === args.callback());
+      assert('1,2' == args.values());
+      assert(''+args.values() == slice.call(arguments).values());
+      fn = args.callback(function(){
+        fn(a + b);
+      });
+      assert(fn !== args.callback())
+      args.callback()();
+    }
+
+    function bar(a, b){
+      var args = slice(arguments);
+      assert('function' == typeof args.callback());
+      assert('2,3' == args.values());
+      args.callback(function(){
+        document.write('OK');
+      });
+      args.callback()();
+    }
+
+    foo(1, 2, function(res){
+      assert(3 === res);
+    });
+
+    bar(2, 3);
+
+    </script>
+  </body>
+</html>

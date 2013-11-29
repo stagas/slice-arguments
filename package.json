@@ -1,0 +1,14 @@
+{
+  "name": "slice-arguments",
+  "repo": "stagas/slice-arguments",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "slice arguments and common helpers",
+  "keywords": ["slice", "arguments", "callback", "decorate"],
+  "author": "stagas",
+  "main": "index.js",
+  "dependencies": {
+    "sliced": "*",
+    "merge": "jkroso/merge#npm"
+  }
+}
